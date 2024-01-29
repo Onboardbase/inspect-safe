@@ -1,6 +1,4 @@
-import { parseConfig } from "./config";
 import { defaultSecurityHeaders } from "./default-headers";
-import { makeHedaerObject } from "./header-factory";
 
 /**
  * @memberof module:nudgeer-safe
@@ -8,20 +6,16 @@ import { makeHedaerObject } from "./header-factory";
  * @param {NudgeerSafeOptions | undefined} options
  * @returns {HeadersObj[]}
  */
-export async function nudgeerSafe(options?:NudgeerSafeOptions):Promise<HeadersObj[]> {
-    let configFile=null;
-    const headers:HeadersObj[]=[]
-    if(options?.isDev){
-      configFile = await parseConfig(__dirname+'nudgeer.json')
-      configFile = configFile
-    }
-
+async function nudgeerSafe(options:NudgeerSafeOptions):Promise<HeaderWithSource[]> {
+    const headers:HeaderWithSource[]=[]
 
     if(!options?.includeConfig){
-      return defaultSecurityHeaders();
+      const safeHeaders = defaultSecurityHeaders();
+
+      return [{source:options.path,headers:safeHeaders}];
     }
 
 
     return headers
 }
-export default nudgeerSafe();
+export default nudgeerSafe;

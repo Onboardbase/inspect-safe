@@ -10,9 +10,9 @@ export function parseConfig(file:string){
 }
 
 export function headersFactory(){
-    
+    throw new Error('not Impelemented yet')
 }
 
-export function headersFactoryWithPaths(){
-    
+export function headersFactoryWithPaths(){    
+    throw new Error('not Impelemented yet')
 }

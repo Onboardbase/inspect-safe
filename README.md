@@ -9,20 +9,15 @@
 inside `next.config.js`
 
 ```js
+/** @type {import('next').NextConfig} */
 import nudgeerSafe from '@onboardbase/nudgeer-safe'
 
-const isDev = process.env.NODE_ENV !== 'production'
+const nextConfig = {
+  headers: await nudgeerSafe(),
+  //... rest of config
+};
 
-module.exports = {
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: nudgeerSafe({isDev})
-      },
-    ]
-  },
-}
+module.exports = nextConfig;
 
 ```
 
@@ -47,15 +42,15 @@ create a `nudgeer.json` in root dir
 ```
 
 ```js
+/** @type {import('next').NextConfig} */
 import nudgeerSafe from '@onboardbase/nudgeer-safe'
 
-const isDev = process.env.NODE_ENV !== 'production'
+const nextConfig = {
+  headers: await nudgeerSafe({includeConfig:true}),
+  //... rest of config
+};
 
-module.exports = {
-  async headers() {
-    return nudgeerSafe({includeConfig:true, isDev})
-  },
-}
+module.exports = nextConfig;
 
 ```
 

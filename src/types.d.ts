@@ -1,6 +1,6 @@
 type NudgeerSafeOptions = {
-  isDev?:boolean,
   includeConfig?:boolean
+  path:string
 }
 
 type SafeHeaders = {
@@ -8,6 +8,10 @@ type SafeHeaders = {
   value:string
 }
 
+type HeaderWithSource = {
+  source:string,
+  headers:HeadersObj[]
+}
 type HeadersObj = {
   key:string,
   value:string
