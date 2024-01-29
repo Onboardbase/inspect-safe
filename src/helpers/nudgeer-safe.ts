@@ -1,5 +1,6 @@
 import { parseConfig } from "./config";
 import { defaultSecurityHeaders } from "./default-headers";
+import { makeHedaerObject } from "./header-factory";
 
 /**
  * @memberof module:nudgeer-safe
@@ -16,8 +17,8 @@ export async function nudgeerSafe(options?:NudgeerSafeOptions):Promise<HeadersOb
     }
 
 
-    if(options?.includeConfig){
-
+    if(!options?.includeConfig){
+      return defaultSecurityHeaders();
     }
 
 

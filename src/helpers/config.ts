@@ -10,7 +10,7 @@ export function parseConfig(file:string){
 }
 
 export function headersFactory(){
-
+    
 }
 
 export function headersFactoryWithPaths(){
