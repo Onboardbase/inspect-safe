@@ -1,12 +1,18 @@
 # Getting started
 
-## Installation
+## Install
 
-> install : `npm i @onboardbase/nudgeer-safe # yarn`
+To use `nudgeer-safe`,
 
-> Usage
+```bash
+yarn add @onboardbase/nudgeer-safe # npm i @onboardbase/nudgeer-safe
+```
 
-inside `next.config.js`
+## Usage
+
+Import the NudgeerSafe library in your nextjs project:
+
+> inside `next.config.js`
 
 ```js
 /** @type {import('next').NextConfig} */
@@ -23,7 +29,7 @@ module.exports = nextConfig;
 
 > Advanced Usage
 
-create a `nudgeer.json` in root dir
+Create a `nudgeer.json` in the root dir
 
 ```json
 {
@@ -51,15 +57,4 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
 ```
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](issues).
-
-
-## 📝 License
-
-Copyright © 2023 [Onboardbase](https://github.com/onboardbase).<br />
-This project is [MIT](LICENSE) licensed.
