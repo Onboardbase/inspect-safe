@@ -1,7 +1,7 @@
 {
-  "name": "ts-npm-package-boilerplate",
-  "version": "0.2.5",
-  "description": "TypeScript NPM Module Boilerplate",
+  "name": "nudgeer-safe",
+  "version": "0.0.1",
+  "description": "Injection of Security headers in modern frameworks, modify them and Enjoy secure apps within a click",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -18,18 +18,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hebertcisco/ts-npm-package-boilerplate.git"
+    "url": "git+https://github.com/onboardbase/nudgeer-safe.git"
   },
   "keywords": [
-    "boilerplate",
-    "typescript"
+    "HTTPS",
+    "security",
+    "next-safe",
+    "astro-safe",
+    "headers",
+    "Nudgeer"
   ],
-  "author": "Hebert Cisco",
-  "license": "MIT",
+  "author": "Mahmoud Galal",
   "bugs": {
-    "url": "https://github.com/hebertcisco/ts-npm-package-boilerplate/issues"
+    "license": "MIT",
+    "url": "https://github.com/onboardbase/nudgeer-safe/issues"
   },
-  "homepage": "https://github.com/hebertcisco/ts-npm-package-boilerplate#readme",
+  "homepage": "https://nudgeer.com",
   "devDependencies": {
     "@types/jest": "29.4.0",
     "@typescript-eslint/eslint-plugin": "5.54.0",
