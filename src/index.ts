@@ -1,4 +1,6 @@
-export { Uuid } from './helpers/uuid';
-import uuid from './helpers/uuid';
-
-export default uuid;
+export { nudgeerSafe } from './helpers/nudgeer-safe';
+import nudgeerSafe from './helpers/nudgeer-safe';
+/**
+ * @module nudgeer-safe
+ */
+export default nudgeerSafe;
