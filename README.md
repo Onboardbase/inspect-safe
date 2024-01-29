@@ -1,4 +1,6 @@
-# Getting started
+# Nudgeer Safe
+
+One-click security headers for SSR frameworks
 
 ## Install
 
