@@ -13,7 +13,7 @@ inside `next.config.js`
 import nudgeerSafe from '@onboardbase/nudgeer-safe'
 
 const nextConfig = {
-  headers: await nudgeerSafe(),
+  headers: async ()=> {return await nudgeerSafe({path:'/:path*'})}
   //... rest of config
 };
 
@@ -28,7 +28,7 @@ create a `nudgeer.json` in root dir
 ```json
 {
   "version":"1.0",
-  "path":{
+  "sources":{
     "source":"/api/*",
     "headers":{
       "Content-Type":"application/json"
@@ -46,7 +46,7 @@ create a `nudgeer.json` in root dir
 import nudgeerSafe from '@onboardbase/nudgeer-safe'
 
 const nextConfig = {
-  headers: await nudgeerSafe({includeConfig:true}),
+  headers: async ()=> {return await nudgeerSafe({includeConfig:true, path:'/:path*'})}
   //... rest of config
 };
 
