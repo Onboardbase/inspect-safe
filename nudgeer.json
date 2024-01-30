@@ -1,12 +1,5 @@
 {
   "version":"1.0",
-  "path":"/path:*",
-  "headers":[
-    {
-      "key":"content-security-policy",
-      "value":"default-src 'self'"
-    }
-  ],
   "paths":{
     "/path:*":{
       "headers":[

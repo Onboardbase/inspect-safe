@@ -14,8 +14,6 @@ const pathSchema = z.object({
 export const configSchema = z.object({
   version: z.enum(CONFIG_VERSION),
   paths: z.record(pathSchema),
-  path:z.string(),
-  headers:z.array(headerSchema)
 });
 
 export function validateConfigFile(object:JSON){
