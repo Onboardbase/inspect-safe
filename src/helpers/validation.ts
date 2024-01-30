@@ -15,10 +15,9 @@ export const configSchema = z.object({
   version: z.enum(CONFIG_VERSION),
   paths: z.record(pathSchema),
   path:z.string(),
-  'global-headers':z.array(headerSchema)
+  headers:z.array(headerSchema)
 });
 
 export function validateConfigFile(object:JSON){
-  const validate = configSchema.parse(object)
-  return validate
+  return configSchema.parse(object)
 }

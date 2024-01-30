@@ -28,4 +28,7 @@ type ConfigFile = {
     [key:string]:HeadersObj
   }
   path:string
+  headers:HeadersObj[]
 }
+
+type subConfigs = Omit<ConfigFile,'verison'>

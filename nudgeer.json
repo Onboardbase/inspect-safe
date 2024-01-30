@@ -1,7 +1,7 @@
 {
   "version":"1.0",
   "path":"/path:*",
-  "global-headers":[
+  "headers":[
     {
       "key":"content-security-policy",
       "value":"default-src 'self'"
