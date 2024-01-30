@@ -1,3 +1,5 @@
+import { SafeHeaders } from "../types";
+
 export function defaultSecurityHeaders():SafeHeaders[]{
   return [
     {

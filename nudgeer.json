@@ -1,5 +1,12 @@
 {
-  "verison":"1.0",
+  "version":"1.0",
+  "path":"/path:*",
+  "global-headers":[
+    {
+      "key":"content-security-policy",
+      "value":"default-src 'self'"
+    }
+  ],
   "paths":{
     "/path:*":{
       "headers":[

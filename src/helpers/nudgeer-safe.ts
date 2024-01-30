@@ -1,9 +1,10 @@
+import { HeaderWithSource, NudgeerSafeOptions } from "../types";
 import { defaultSecurityHeaders } from "./default-headers";
 
 /**
  * @memberof module:nudgeer-safe
  * 
- * @param {NudgeerSafeOptions | undefined} options
+ * @param {NudgeerSafeOptions} options
  * @returns {HeadersObj[]}
  */
 async function nudgeerSafe(options:NudgeerSafeOptions):Promise<HeaderWithSource[]> {

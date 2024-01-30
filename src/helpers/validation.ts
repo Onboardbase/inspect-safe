@@ -11,10 +11,11 @@ const pathSchema = z.object({
   headers: z.array(headerSchema),
 });
 
-const configSchema = z.object({
-  verison: z.enum(CONFIG_VERSION),
+export const configSchema = z.object({
+  version: z.enum(CONFIG_VERSION),
   paths: z.record(pathSchema),
-
+  path:z.string(),
+  'global-headers':z.array(headerSchema)
 });
 
 export function validateConfigFile(object:JSON){

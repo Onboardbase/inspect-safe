@@ -21,3 +21,11 @@ type HeadersObj = {
   key:string,
   value:string
 }
+
+type ConfigFile = {
+  version:ConfigVersion,
+  paths:{
+    [key:string]:HeadersObj
+  }
+  path:string
+}
