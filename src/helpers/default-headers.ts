@@ -9,10 +9,6 @@ export function defaultSecurityHeaders():SafeHeaders[]{
       value:"origin",
     },
     {
-      key:"referrer-policy",
-      value:"origin",
-    },
-    {
       key:"x-frame-options",
       value:"DENY",
     },

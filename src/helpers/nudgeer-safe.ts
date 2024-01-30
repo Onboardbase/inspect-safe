@@ -14,7 +14,9 @@ async function nudgeerSafe(options:NudgeerSafeOptions):Promise<HeaderWithSource[
 
       return [{source:options.path,headers:safeHeaders}];
     }
-
+    // when including a path we have to parse the file, extract the headers
+    // then return the object to it
+    
 
     return headers
 }

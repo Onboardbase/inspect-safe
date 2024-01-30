@@ -1,7 +1,12 @@
+import {CONFIG_VERSION} from './helpers/constants'
+
 type NudgeerSafeOptions = {
   includeConfig?:boolean
   path:string
 }
+
+export type ConfigVersion = typeof CONFIG_VERSION[number];
+
 
 type SafeHeaders = {
   key:string
