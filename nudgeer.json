@@ -1,7 +1,40 @@
 {
-  "verison":"1.0",
-  "path":{
-    "source":"",
-    "content-type":"application/json"
+  "version":"1.0",
+  "path":"/path:*",
+  "headers":[
+    {
+      "key":"content-security-policy",
+      "value":"default-src 'self'"
+    }
+  ],
+  "paths":{
+    "/path:*":{
+      "headers":[
+        {
+          "key":"content-security-policy",
+          "value":"default-src 'self'"
+        },
+        {
+          "key":"referrer-policy",
+          "value":"origin"
+        },
+        {
+          "key":"x-content-type-options",
+          "value":"nosniff"
+        }
+      ]
+    },
+    "/api:*":{
+      "headers":[
+        {
+          "key":"x-frame-options",
+          "value":"DENY"
+        },
+        {
+          "key":"x-xss-protection",
+          "value":"1; mode=block"
+        }
+      ]
+    }
   }
 }

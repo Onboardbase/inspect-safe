@@ -1,12 +1,10 @@
+import { SafeHeaders } from "../types";
+
 export function defaultSecurityHeaders():SafeHeaders[]{
   return [
     {
       key:"content-security-policy",
       value:"default-src 'self'",
-    },
-    {
-      key:"referrer-policy",
-      value:"origin",
     },
     {
       key:"referrer-policy",
