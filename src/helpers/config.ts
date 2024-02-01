@@ -8,7 +8,6 @@ const explorer = cosmiconfig("nudgeer", {
 
 export async function getConfig(cwd:string) {
     const config = await getRawConfig(cwd)
-  
     if (!config) {
       return null
     }
