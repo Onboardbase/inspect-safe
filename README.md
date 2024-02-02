@@ -12,7 +12,7 @@ yarn add @onboardbase/nudgeer-safe # npm i @onboardbase/nudgeer-safe
 
 ## Usage
 
-Import the NudgeerSafe library in your nextjs project:
+Import the NudgeerSafe library in your `nextjs` project:
 
 > inside `next.config.js`
 
@@ -30,8 +30,7 @@ const nextConfig = {
 module.exports = nextConfig;
 
 ```
-For more Frameworks
-(See Docs)[https://docs.nudgeer.com]
+For more frameworks [see docs](https://docs.nudgeer.com)
 
 > Advanced Usage
 
@@ -93,9 +92,9 @@ module.exports = nextConfig;
 ```
 
 ### Roadmap
-| Support | Framework | Version |
-| [x]     | NextJs    |v0.0.1   |
-| [ ]     | NodeJs    |v0.0.2   |
-| [ ]     | AstroJs   |v0.0.2   |
-| [ ]     | NuxtJs    |v0.0.3   |
-| [ ]     | GatsbyJs  |v0.0.4   |
+Support
+- [x] NextJs v0.0.1
+- [ ] NodeJs v0.0.2
+- [ ] AstroJs v0.0.2
+- [ ] NuxtJs  v0.0.3
+- [ ] GatsbyJs v0.0.4
