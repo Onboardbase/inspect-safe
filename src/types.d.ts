@@ -1,7 +1,12 @@
+import {CONFIG_VERSION} from './helpers/constants'
+
 type NudgeerSafeOptions = {
   includeConfig?:boolean
-  path:string
+  path?:string
 }
+
+export type ConfigVersion = typeof CONFIG_VERSION[number];
+
 
 type SafeHeaders = {
   key:string
@@ -16,3 +21,12 @@ type HeadersObj = {
   key:string,
   value:string
 }
+
+type ConfigFile = {
+  version:ConfigVersion,
+  paths:{
+    [key:string]:HeadersObj[]
+  }
+}
+
+type subConfigs = Omit<ConfigFile,'verison'>
