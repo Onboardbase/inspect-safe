@@ -21,7 +21,9 @@ Import the NudgeerSafe library in your nextjs project:
 import nudgeerSafe from '@onboardbase/nudgeer-safe'
 
 const nextConfig = {
-  headers: async ()=> {return await nudgeerSafe({path:'/:path*'})}
+  headers: async ()=> {
+    return await nudgeerSafe({path:'/:path*'})
+  }
   //... rest of config
 };
 
@@ -81,7 +83,9 @@ Create a `nudgeer.json` in the root dir
 import nudgeerSafe from '@onboardbase/nudgeer-safe'
 
 const nextConfig = {
-  headers: async ()=> {return await nudgeerSafe({includeConfig:true})}
+  headers: async ()=> {
+    return await nudgeerSafe({includeConfig:true})
+  }
   //... rest of config
 };
 
