@@ -1,8 +1,13 @@
-import {CONFIG_VERSION} from './helpers/constants'
+import {CONFIG_VERSION, FRAMEWORKS} from './helpers/constants'
+
+
+
+export type Framework = { [K in FRAMEWORKS]: K };
 
 type NudgeerSafeOptions = {
   includeConfig?:boolean
   path?:string
+  framework: FRAMEWORKS.ASTROJS | FRAMEWORKS.NEXTJS;
 }
 
 export type ConfigVersion = typeof CONFIG_VERSION[number];
@@ -11,6 +16,10 @@ export type ConfigVersion = typeof CONFIG_VERSION[number];
 type SafeHeaders = {
   key:string
   value:string
+}
+
+type DefaultHeadersObj = {
+  [key:string]:string
 }
 
 type HeaderWithSource = {
@@ -24,6 +33,7 @@ type HeadersObj = {
 
 type ConfigFile = {
   version:ConfigVersion,
+  path:string
   paths:{
     [key:string]:HeadersObj[]
   }

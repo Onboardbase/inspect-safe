@@ -1,25 +1,35 @@
-import { ConfigFile, HeaderWithSource, NudgeerSafeOptions } from "../types";
+import { ConfigFile, DefaultHeadersObj, HeaderWithSource, NudgeerSafeOptions } from "../types";
 import { getConfig } from "./config";
+import { FRAMEWORKS } from "./constants";
 import { defaultSecurityHeaders } from "./default-headers";
-import { makeHeaderObj } from "./header-factory";
+import { makeHeaderArray, makeHeadersObj } from "./header-factory";
 /**
  * @memberof module:nudgeer-safe
  * 
  * @param {NudgeerSafeOptions} options
- * @returns {HeadersObj[]}
+ * @returns {HeadersWithSource[]} 
  */
-async function nudgeerSafe(options:NudgeerSafeOptions):Promise<HeaderWithSource[]> {
+async function nudgeerSafe(options:NudgeerSafeOptions):Promise<HeaderWithSource[] | DefaultHeadersObj> {
     let headers:HeaderWithSource[]=[]
 
+    const safeHeaders = defaultSecurityHeaders();
     if(!options?.includeConfig && options.path){
-      const safeHeaders = defaultSecurityHeaders();
-
       return [{source:options.path,headers:safeHeaders}]
     }
-    // when including a path we have to parse the file, extract the headers
-    // then return the object to it
-    const configs = await getConfig(process.cwd()) as ConfigFile
-    headers = await makeHeaderObj(configs)
+    if(options.includeConfig && options.path){
+      const configs = await getConfig(process.cwd()) as ConfigFile
+      
+      if(options.framework === FRAMEWORKS.NEXTJS){ 
+        headers = await makeHeaderArray(configs)
+        headers.push({source:options.path,headers:safeHeaders})
+      }
+      if(options.framework === FRAMEWORKS.ASTROJS){
+        return makeHeadersObj(configs);
+      }
+    
+      return headers
+    }
+    
     return headers;
     
 }

@@ -22,7 +22,7 @@ import nudgeerSafe from '@onboardbase/nudgeer-safe'
 
 const nextConfig = {
   headers: async ()=> {
-    return await nudgeerSafe({path:'/:path*'})
+    return await nudgeerSafe({framework:'NextJS',path:'/:path*'})
   }
   //... rest of config
 };
@@ -39,6 +39,7 @@ Create a `nudgeer.json` in the root dir
 ```json
 {
   "version":"1.0",
+  "path":"/:path*",
   "paths":{
     "/:path*":{
       "headers":[
@@ -83,7 +84,7 @@ import nudgeerSafe from '@onboardbase/nudgeer-safe'
 
 const nextConfig = {
   headers: async ()=> {
-    return await nudgeerSafe({includeConfig:true})
+    return await nudgeerSafe({framework:'NextJS',includeConfig:true})
   }
   //... rest of config
 };
@@ -94,7 +95,7 @@ module.exports = nextConfig;
 ### Roadmap
 Support
 - [x] NextJs v0.0.1
-- [ ] NodeJs v0.0.2
-- [ ] AstroJs v0.0.2
-- [ ] NuxtJs  v0.0.3
-- [ ] GatsbyJs v0.0.4
+- [x] AstroJs v0.0.4
+- [ ] NodeJs v0.0.5
+- [ ] NuxtJs  v0.0.5
+- [ ] GatsbyJs v0.0.6
