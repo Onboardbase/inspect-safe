@@ -34,7 +34,7 @@ For more frameworks [see docs](https://docs.nudgeer.com)
 
 > Advanced Usage
 
-Create a `nudgeer.json` in the root dir
+Create a `nudgeer.json` in the root directory
 
 ```json
 {
@@ -94,8 +94,10 @@ module.exports = nextConfig;
 
 ### Roadmap
 Support
-- [x] NextJs v0.0.1
-- [x] AstroJs v0.0.4
-- [ ] NodeJs v0.0.5
-- [ ] NuxtJs  v0.0.5
-- [ ] GatsbyJs v0.0.6
+
+- [x] NextJs
+- [x] AstroJs
+- [ ] NodeJs
+- [ ] NuxtJs
+- [ ] GatsbyJs
+- [ ] Nestjs
