@@ -1,0 +1,13 @@
+{
+  "version":"1.0",
+  "paths":{
+    "/:api*":{
+      "headers":[
+        {
+          "key":"X-Test",
+          "value":"I"
+        }
+      ]
+    }
+  }
+}
