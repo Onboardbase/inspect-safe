@@ -1,9 +1,9 @@
 import { ConfigFile, DefaultHeadersObj, HeaderWithSource, HeadersObj } from '../types'
 import { defaultSecurityHeaders } from './default-headers';
 
-export async function makeHeaderArray(configFile:ConfigFile):Promise<HeaderWithSource[]>{
+export function makeHeaderArray(configFile:ConfigFile):HeaderWithSource[]{
   const {paths,path} = configFile
-  // later if there's a new version to append new thing, or might add the framework to instruct the lib to do smth else
+
   const safeHeaders = defaultSecurityHeaders();
   const constructedHeaders:HeaderWithSource[] = [
     {source:path,headers:safeHeaders}
@@ -19,7 +19,7 @@ export async function makeHeaderArray(configFile:ConfigFile):Promise<HeaderWithS
   return constructedHeaders
 }
 
-export async function makeHeadersObj(configFile:ConfigFile){
+export function makeHeadersObj(configFile:ConfigFile){
   const {paths} = configFile
   let HeadersObject:DefaultHeadersObj={};
 
@@ -41,7 +41,7 @@ export async function makeHeadersObj(configFile:ConfigFile){
   return HeadersObject
 }
 
-export async function makeDefaultHeadersObj(){
+export function makeDefaultHeadersObj(){
   let HeadersObject:DefaultHeadersObj={};
   const safeHeaders = defaultSecurityHeaders()
   safeHeaders.forEach(header=>{

@@ -7,7 +7,7 @@ export type Framework = { [K in FRAMEWORKS]: K };
 type NudgeerSafeOptions = {
   includeConfig?:boolean
   path?:string
-  framework: 'AstroJs' | 'NextJs';
+  framework: 'AstroJs' | 'NextJs' | 'NuxtJs';
 }
 
 export type ConfigVersion = typeof CONFIG_VERSION[number];

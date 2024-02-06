@@ -18,30 +18,40 @@ import {
  * @param {NudgeerSafeOptions} options
  * @returns {HeadersWithSource[]}
  */
-async function nudgeerSafe(
+function nudgeerSafe(
   options: NudgeerSafeOptions
-): Promise<HeaderWithSource[] | DefaultHeadersObj> {
+): HeaderWithSource[] | DefaultHeadersObj {
   let headers: HeaderWithSource[] = [];
   const safeHeaders = defaultSecurityHeaders();
 
-  if (!options?.includeConfig && !options.path && options.framework === 'AstroJs') {
-    return await makeDefaultHeadersObj();
+  if (!options?.includeConfig && !options.path) {
+    if(options.framework === 'AstroJs' || options.framework === 'NuxtJs')
+      return makeDefaultHeadersObj();
   }
 
   if (options.includeConfig) {
-    const configs = (await getConfig(process.cwd())) as ConfigFile;
+    let configs={};
+
+    const configsPromise = getConfig(process.cwd());
+    
+    configsPromise.then(config => {
+        configs = config as ConfigFile;
+        }).catch(error => {
+          throw new Error(error)
+      }); 
+
 
     if (options.framework === 'NextJs') {
       if (options.path) {
         headers.push({ source: options.path, headers: safeHeaders });
       }
-      const HeadersFromConfigFile = await makeHeaderArray(configs);
+      const HeadersFromConfigFile = makeHeaderArray(configs as ConfigFile);
 
       HeadersFromConfigFile.map(header=>{headers.push(header)})
     }
 
-    if (options.framework === 'AstroJs') {
-      return makeHeadersObj(configs);
+    if (options.framework === 'AstroJs' || options.framework === 'NuxtJs') {
+      return makeHeadersObj(configs as ConfigFile);
     }
     return headers;
   }

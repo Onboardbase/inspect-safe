@@ -6,5 +6,6 @@ export const CURRENT_CONFIG_VERSION:ConfigVersion = CONFIG_VERSION[0]
 
 export enum FRAMEWORKS{
   ASTROJS='AstroJS',
-  NEXTJS='NextJS'
+  NEXTJS='NextJS',
+  NUXTJS='NuxtJS'
 } 
