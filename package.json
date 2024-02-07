@@ -5,6 +5,8 @@
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
   "scripts": {
+    "prepare:docs":"api-extractor run --local --verbose",
+    "generate:docs":"yarn prepare:docs && api-documenter markdown --input-folder temp --output-folder docs",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.(js|ts)\"",
     "lint": "eslint src --ext .js,.ts",
