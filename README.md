@@ -92,12 +92,8 @@ const nextConfig = {
 module.exports = nextConfig;
 ```
 
-### Roadmap
-Support
+### Supported
 
 - [x] NextJs
 - [x] AstroJs
-- [ ] NodeJs
-- [ ] NuxtJs
-- [ ] GatsbyJs
-- [ ] Nestjs
+- [x] NuxtJs
