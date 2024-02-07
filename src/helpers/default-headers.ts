@@ -22,5 +22,9 @@ export function defaultSecurityHeaders():SafeHeaders[]{
       key:"x-content-type-options",
       value:"nosniff",
     },
+    {
+      key:"x-secured-by",
+      value:"nudgeer-safe"
+    }
   ]
 }
