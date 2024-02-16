@@ -21,7 +21,7 @@ import {
 function nudgeerSafe(
   options: NudgeerSafeOptions
 ): HeaderWithSource[] | DefaultHeadersObj {
-  let headers: HeaderWithSource[] = [];
+  const headers: HeaderWithSource[] = [];
   const safeHeaders = defaultSecurityHeaders();
 
   if (!options?.includeConfig && !options.path) {
