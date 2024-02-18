@@ -1,30 +1,20 @@
-import { cosmiconfig } from "cosmiconfig";
+import { cosmiconfigSync } from "cosmiconfig";
+import { ConfigFile } from "../types";
 import { validateConfigFile } from "./validation";
 
-const explorer = cosmiconfig("nudgeer", {
-    searchPlaces: ["nudgeer.json"],
-  })
+const explorer = cosmiconfigSync("nudgeer", {
+  searchPlaces: ["nudgeer.json"],
+});
 
-
-export async function getConfig(cwd:string) {
-    const config = await getRawConfig(cwd)
-    if (!config) {
-      return null
+export function getRawConfig(cwd: string): ConfigFile | null{
+  try {
+    const configResult = explorer.search(cwd);
+    if (!configResult) {
+      return null;
     }
   
-    return config
-}
-
-
-export async function getRawConfig(cwd:string) {
-    try {
-      const configResult = await explorer.search(cwd)
-      if (!configResult) {
-        return null
-      }
-  
-      return validateConfigFile(configResult.config)
-    } catch (error) {
-      throw new Error(`Invalid configuration found in nudgeer.json.`)
-    }
+    return validateConfigFile(configResult.config as ConfigFile) as ConfigFile;
+  } catch (error) {
+    throw new Error(`Invalid configuration found in nudgeer.json.`);
   }
+}

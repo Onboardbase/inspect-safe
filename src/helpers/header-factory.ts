@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ConfigFile, DefaultHeadersObj, HeaderWithSource, HeadersObj } from '../types'
 import { defaultSecurityHeaders } from './default-headers';
 
-export function makeHeaderArray(configFile:ConfigFile):HeaderWithSource[]{
-  const {paths,path} = configFile
+export function makeHeaderArray(configFile:ConfigFile,path:string):HeaderWithSource[]{
+  const {paths} = configFile
 
   const safeHeaders = defaultSecurityHeaders();
   const constructedHeaders:HeaderWithSource[] = [
@@ -11,8 +12,7 @@ export function makeHeaderArray(configFile:ConfigFile):HeaderWithSource[]{
   Object.entries(paths).forEach(([pathKey, pathValue]) => {
     constructedHeaders.push({
       source: pathKey,
-      //@ts-expect-error
-      headers: pathValue.headers,
+      headers: pathValue['headers'],
     });
   });
   
@@ -21,28 +21,40 @@ export function makeHeaderArray(configFile:ConfigFile):HeaderWithSource[]{
 
 export function makeHeadersObj(configFile:ConfigFile){
   const {paths} = configFile
-  let HeadersObject:DefaultHeadersObj={};
+  const HeadersObject:DefaultHeadersObj={};
 
   const safeHeaders = defaultSecurityHeaders()
   safeHeaders.forEach(header=>{
     HeadersObject[header.key]=header.value
   })
-  //@ts-ignore
-  Object.entries(paths).forEach(([pathKey,pathValue])=>{
-    //@ts-expect-error
-    const headers:HeadersObj[] = pathValue.headers
+
+  Object.entries(paths).forEach(([_pathKey,pathValue])=>{
+    const headers:HeadersObj[] = pathValue['headers']
     headers.forEach(header=>{
       HeadersObject[header.key] = header.value
     })
-    
   })
-  
-  
   return HeadersObject
 }
 
+export function routeHeaders(configFile:ConfigFile,route:string){
+  const {paths} = configFile
+  const HeadersObject:DefaultHeadersObj={};
+
+  Object.entries(paths).forEach(([pathKey,pathValue])=>{
+    if(pathKey === route){
+      const headers:HeadersObj[] = pathValue['headers']
+      headers.forEach(header=>{
+        HeadersObject[header.key] = header.value
+      })
+    }
+  })
+  return HeadersObject
+}
+
+
 export function makeDefaultHeadersObj(){
-  let HeadersObject:DefaultHeadersObj={};
+  const HeadersObject:DefaultHeadersObj={};
   const safeHeaders = defaultSecurityHeaders()
   safeHeaders.forEach(header=>{
     HeadersObject[header.key]=header.value
