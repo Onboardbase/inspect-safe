@@ -2,33 +2,69 @@
 
 One-click security headers for SSR frameworks
 
-## Install
+# Install the package
 
-To use `nudgeer-safe`,
-
-```bash
-yarn add @onboardbase/nudgeer-safe # npm i @onboardbase/nudgeer-safe
+```Text npm
+npm i @onboardbase/nudgeer-safe
+```
+```Text yarn
+yarn add @onboardbase/nudgeer-safe
 ```
 
-## Usage
+# NextJS
 
-Import the NudgeerSafe library in your `nextjs` project:
+In `NextJS` configuration file
 
-> inside `next.config.js`
-
-```js
+```js nextjs.config.js
 /** @type {import('next').NextConfig} */
-import nudgeerSafe from '@onboardbase/nudgeer-safe'
+import NudgeerSafe from '@onboardbase/nudgeer-safe'
 
 const nextConfig = {
   headers: async ()=> {
-    return await nudgeerSafe({framework:'NextJS',path:'/:path*'})
+    return await nudgeerSafe({includeConfig:true,path:"/*"}).next()
   }
   //... rest of config
 };
 
 module.exports = nextConfig;
+```
 
+# NuxtJS
+
+```ts nuxt.config.ts
+// https://nuxt.com/docs/api/configuration/nuxt-config
+import NudgeerSafe from '@onboardbase/nudgeer-safe'
+export default defineNuxtConfig({
+  devtools: { enabled: true },
+  routeRules:{
+    '/**':{
+      headers: new NudgeerSafe().nuxt()
+    },
+  }
+})
+
+```
+
+# AstroJS
+
+```js astro.config.mjs
+import { defineConfig } from 'astro/config';
+import node from '@astrojs/node'
+import tailwind from "@astrojs/tailwind";
+import NudgeerSafe from '@onboardbase/nudgeer-safe'
+
+const headers =  new NudgeerSafe().astro()
+
+export default defineConfig({
+  output:'server',
+  server:{
+    headers: headers
+  },
+  adapter:node({
+    mode: 'standalone',
+  }),
+  integrations: [tailwind()]
+});
 ```
 For more frameworks [see docs](https://docs.nudgeer.com)
 
@@ -76,20 +112,6 @@ Create a `nudgeer.json` in the root directory
   }
 }
 
-```
-
-```js
-/** @type {import('next').NextConfig} */
-import nudgeerSafe from '@onboardbase/nudgeer-safe'
-
-const nextConfig = {
-  headers: async ()=> {
-    return await nudgeerSafe({framework:'NextJS',includeConfig:true})
-  }
-  //... rest of config
-};
-
-module.exports = nextConfig;
 ```
 
 ### Supported
