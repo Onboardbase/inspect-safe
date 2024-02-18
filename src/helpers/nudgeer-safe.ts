@@ -23,10 +23,12 @@ import {
 class NudgeerSafe {
   config:ConfigFile
   options: NudgeerSafeOptions;
-  constructor(options: NudgeerSafeOptions){
-    this.options = options
-    if(options.includeConfig){
-      this.loadConfig()
+  constructor(options?: NudgeerSafeOptions){
+    if(options){
+      this.options = options
+      if(options.includeConfig){
+        this.loadConfig()
+      }
     }
   }
 
