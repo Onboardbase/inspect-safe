@@ -4,59 +4,71 @@ import {
   HeaderWithSource,
   NudgeerSafeOptions,
 } from "../types";
-import { getConfig } from "./config";
+import { getRawConfig } from "./config";
 import { defaultSecurityHeaders } from "./default-headers";
 import {
   makeDefaultHeadersObj,
   makeHeaderArray,
   makeHeadersObj,
+  routeHeaders,
 } from "./header-factory";
 
 /**
  * @memberof module:nudgeer-safe
  *
  * @param {NudgeerSafeOptions} options
- * @returns {HeadersWithSource[]}
+ * @returns {HeaderWithSource[] | DefaultHeadersObj}
  */
-function nudgeerSafe(
-  options: NudgeerSafeOptions
-): HeaderWithSource[] | DefaultHeadersObj {
-  let headers: HeaderWithSource[] = [];
-  const safeHeaders = defaultSecurityHeaders();
 
-  if (!options?.includeConfig && !options.path) {
-    if(options.framework === 'AstroJs' || options.framework === 'NuxtJs')
-      return makeDefaultHeadersObj();
+class NudgeerSafe {
+  config:ConfigFile
+  options: NudgeerSafeOptions;
+  constructor(options: NudgeerSafeOptions){
+    this.options = options
+    if(options.includeConfig){
+      this.loadConfig()
+    }
   }
 
-  if (options.includeConfig) {
-    let configs={};
+  public next(){
+    if(this.config && this.config.version === '1.0'){
+      const HeadersFromConfigFile = makeHeaderArray(this.config, this.options.path);
+      return HeadersFromConfigFile
+    }
+    const safeHeaders:HeaderWithSource[] = [{source:this.options.path,headers:defaultSecurityHeaders()}];
+    return safeHeaders; 
+  }
 
-    const configsPromise = getConfig(process.cwd());
+  public astro(): DefaultHeadersObj{
+    if(this.config && this.config.version === '1.0'){
+      return makeHeadersObj(this.config);
+    }
+    return makeDefaultHeadersObj();
     
-    configsPromise.then(config => {
-        configs = config as ConfigFile;
-        }).catch(error => {
-          throw new Error(error)
-      }); 
-
-
-    if (options.framework === 'NextJs') {
-      if (options.path) {
-        headers.push({ source: options.path, headers: safeHeaders });
-      }
-      const HeadersFromConfigFile = makeHeaderArray(configs as ConfigFile);
-
-      HeadersFromConfigFile.map(header=>{headers.push(header)})
-    }
-
-    if (options.framework === 'AstroJs' || options.framework === 'NuxtJs') {
-      return makeHeadersObj(configs as ConfigFile);
-    }
-    return headers;
   }
 
-  return headers;
+  public nuxt(route?: string): DefaultHeadersObj{
+    if(this.config && this.config.version === '1.0'){
+      if(route){
+        return routeHeaders(this.config,route)
+      }
+      return makeHeadersObj(this.config);
+    }
+    return makeDefaultHeadersObj();
+  }
+
+  public route(){
+    return 'not Impelemented yet'
+  }
+
+  private loadConfig(){
+    try {
+      const config = getRawConfig(process.cwd());
+      this.config = config as ConfigFile;
+    } catch (error) {
+      throw new Error(`Error loading configuration: ${error}`);
+    }
+  }
 }
 
-export default nudgeerSafe;
+export default NudgeerSafe;

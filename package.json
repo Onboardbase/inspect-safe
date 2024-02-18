@@ -5,8 +5,8 @@
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
   "scripts": {
-    "prepare:docs":"api-extractor run --local --verbose",
-    "generate:docs":"yarn prepare:docs && api-documenter markdown --input-folder temp --output-folder docs",
+    "prepare:docs": "api-extractor run --local --verbose",
+    "generate:docs": "yarn prepare:docs && api-documenter markdown --input-folder temp --output-folder docs",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.(js|ts)\"",
     "lint": "eslint src --ext .js,.ts",
@@ -52,6 +52,7 @@
   ],
   "dependencies": {
     "cosmiconfig": "^9.0.0",
+    "lilconfig": "^3.1.1",
     "zod": "^3.22.4"
   }
 }
