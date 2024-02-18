@@ -15,12 +15,12 @@ import {
 
 /**
  * @memberof module:nudgeer-safe
- *
+ * @class
  * @param {NudgeerSafeOptions} options
  * @returns {HeaderWithSource[] | DefaultHeadersObj}
  */
 
-class NudgeerSafe {
+export default class NudgeerSafe {
   config:ConfigFile
   options: NudgeerSafeOptions;
   constructor(options?: NudgeerSafeOptions){
@@ -73,4 +73,3 @@ class NudgeerSafe {
   }
 }
 
-export default NudgeerSafe;
