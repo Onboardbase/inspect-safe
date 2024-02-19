@@ -1,13 +1,10 @@
-import {CONFIG_VERSION, FRAMEWORKS} from './helpers/constants'
+import {CONFIG_VERSION} from './helpers/constants'
 
 
-
-export type Framework = { [K in FRAMEWORKS]: K };
 
 export type NudgeerSafeOptions = {
   includeConfig?:boolean
   path?:string
-  framework: 'AstroJs' | 'NextJs' | 'NuxtJs';
 }
 
 export type ConfigVersion = typeof CONFIG_VERSION[number];
@@ -33,7 +30,6 @@ export type HeadersObj = {
 
 export type ConfigFile = {
   version:ConfigVersion,
-  path:string
   paths:{
     [key:string]:HeadersObj[]
   }

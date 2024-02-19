@@ -1,6 +1,6 @@
-import { SafeHeaders } from "../types";
+import { HeadersObj } from "../types";
 
-export function defaultSecurityHeaders():SafeHeaders[]{
+export function defaultSecurityHeaders():HeadersObj[]{
   return [
     {
       key:"content-security-policy",

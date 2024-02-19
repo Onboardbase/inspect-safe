@@ -15,6 +15,6 @@ const configSchema = z.object({
   paths: z.record(pathSchema),
 });
 
-export function validateConfigFile(object: Record<string, any>) {
+export function validateConfigFile(object: Record<string, unknown>) {
   return configSchema.parse(object);
 }
