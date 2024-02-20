@@ -59,9 +59,6 @@ export default class NudgeerSafe {
     return makeDefaultHeadersObj();
   }
 
-  public route(){
-    return 'not Impelemented yet'
-  }
 
   private loadConfig(){
     try {

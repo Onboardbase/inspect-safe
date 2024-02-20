@@ -12,6 +12,7 @@ const pathSchema = z.object({
 
 const configSchema = z.object({
   version: z.literal(CONFIG_VERSION[0]),
+  detatch: z.boolean().default(false),
   paths: z.record(pathSchema),
 });
 
