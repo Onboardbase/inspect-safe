@@ -1,6 +1,6 @@
 {
   "name": "@onboardbase/nudgeer-safe",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Injection of Security headers in modern frameworks, modify them and Enjoy secure apps within a click",
   "main": "lib/src/index.js",
   "types": "lib/src/index.d.ts",
