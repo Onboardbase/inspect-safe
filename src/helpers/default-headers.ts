@@ -24,7 +24,7 @@ export function defaultSecurityHeaders():HeadersObj[]{
     },
     {
       key:"permissions-policy",
-      value:'geolocation=(self "https://*.nudgeer.com")'
+      value:'geolocation=()'
     },
     {
       key:"x-secured-by",
