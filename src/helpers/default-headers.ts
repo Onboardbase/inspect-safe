@@ -23,6 +23,10 @@ export function defaultSecurityHeaders():HeadersObj[]{
       value:"nosniff",
     },
     {
+      key:"permissions-policy",
+      value:'geolocation=()'
+    },
+    {
       key:"x-secured-by",
       value:"nudgeer-safe"
     }
