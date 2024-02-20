@@ -3,12 +3,13 @@ import { ConfigFile, DefaultHeadersObj, HeaderWithSource, HeadersObj } from '../
 import { defaultSecurityHeaders } from './default-headers';
 
 export function makeHeaderArray(configFile:ConfigFile,path:string):HeaderWithSource[]{
-  const {paths} = configFile
-
-  const safeHeaders = defaultSecurityHeaders();
-  const constructedHeaders:HeaderWithSource[] = [
-    {source:path,headers:safeHeaders}
-  ]
+  const constructedHeaders:HeaderWithSource[] = []
+  const {paths, detatch} = configFile
+  if(!detatch){
+    const safeHeaders = defaultSecurityHeaders();
+    constructedHeaders.push({source:path,headers:safeHeaders});
+  }
+  
   Object.entries(paths).forEach(([pathKey, pathValue]) => {
     constructedHeaders.push({
       source: pathKey,
@@ -20,13 +21,16 @@ export function makeHeaderArray(configFile:ConfigFile,path:string):HeaderWithSou
 }
 
 export function makeHeadersObj(configFile:ConfigFile){
-  const {paths} = configFile
+  const {paths, detatch} = configFile
   const HeadersObject:DefaultHeadersObj={};
 
-  const safeHeaders = defaultSecurityHeaders()
-  safeHeaders.forEach(header=>{
+  if(!detatch){
+    const safeHeaders = defaultSecurityHeaders()
+    safeHeaders.forEach(header=>{
     HeadersObject[header.key]=header.value
-  })
+    })
+  }
+  
 
   Object.entries(paths).forEach(([_pathKey,pathValue])=>{
     const headers:HeadersObj[] = pathValue['headers']
