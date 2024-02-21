@@ -30,7 +30,7 @@ export type HeadersObj = {
 
 export type ConfigFile = {
   version: ConfigVersion,
-  detatch: boolean,
+  detach: boolean,
   paths:{
     [key:string]:HeadersObj[]
   }
