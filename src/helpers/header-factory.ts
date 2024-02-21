@@ -4,8 +4,8 @@ import { defaultSecurityHeaders } from './default-headers';
 
 export function makeHeaderArray(configFile:ConfigFile,path:string):HeaderWithSource[]{
   const constructedHeaders:HeaderWithSource[] = []
-  const {paths, detatch} = configFile
-  if(!detatch){
+  const {paths, detach} = configFile
+  if(!detach){
     const safeHeaders = defaultSecurityHeaders();
     constructedHeaders.push({source:path,headers:safeHeaders});
   }
@@ -21,10 +21,10 @@ export function makeHeaderArray(configFile:ConfigFile,path:string):HeaderWithSou
 }
 
 export function makeHeadersObj(configFile:ConfigFile){
-  const {paths, detatch} = configFile
+  const {paths, detach} = configFile
   const HeadersObject:DefaultHeadersObj={};
 
-  if(!detatch){
+  if(!detach){
     const safeHeaders = defaultSecurityHeaders()
     safeHeaders.forEach(header=>{
     HeadersObject[header.key]=header.value

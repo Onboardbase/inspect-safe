@@ -75,6 +75,7 @@ Create a `nudgeer.json` in the root directory
 ```json
 {
   "version":"1.0",
+  "detatch":true, // default false
   "path":"/:path*",
   "paths":{
     "/:path*":{
